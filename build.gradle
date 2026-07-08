@@ -21,6 +21,9 @@ dependencies {
 application {
     mainClass = 'com.arzoovaswani.springgen.Main'
 }
+run {
+    standardInput = System.in
+}
 test {
     useJUnitPlatform()
 }
