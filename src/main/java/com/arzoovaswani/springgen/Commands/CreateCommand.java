@@ -1,5 +1,6 @@
-package com.arzoovaswani.springgen.Commands;
+package com.arzoovaswani.springgen.commands;
 
+import com.arzoovaswani.springgen.generator.FolderGenerator;
 import com.arzoovaswani.springgen.initializr.InitializrClient;
 import com.arzoovaswani.springgen.service.HttpClientService;
 import com.arzoovaswani.springgen.service.ProjectGenerationService;
@@ -29,11 +30,14 @@ public class CreateCommand implements Runnable {
         ZipExtractor zipExtractor =
                 new ZipExtractor();
 
+        FolderGenerator folderGenerator = new FolderGenerator();
+
         this.projectGenerationService =
                 new ProjectGenerationService(
                         wizard,
                         initializrClient,
-                        zipExtractor
+                        zipExtractor,
+                        folderGenerator
                 );
 
     }

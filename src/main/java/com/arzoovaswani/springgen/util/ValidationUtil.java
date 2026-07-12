@@ -1,4 +1,4 @@
-package com.arzoovaswani.springgen.utils;
+package com.arzoovaswani.springgen.util;
 
 import java.util.regex.Pattern;
 

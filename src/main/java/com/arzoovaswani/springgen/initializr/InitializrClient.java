@@ -1,6 +1,6 @@
 package com.arzoovaswani.springgen.initializr;
 
-import com.arzoovaswani.springgen.Model.BuildTool;
+import com.arzoovaswani.springgen.model.BuildTool;
 import com.arzoovaswani.springgen.config.ProjectConfig;
 import com.arzoovaswani.springgen.service.HttpClientService;
 
@@ -9,7 +9,6 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.List;
 
 public class InitializrClient {
 
@@ -74,6 +73,11 @@ public class InitializrClient {
 
         appendParameter(builder, "bootVersion",
                 config.getSpringBootVersion().getVersion());
+        appendParameter(
+                builder,
+                "configurationFileFormat",
+                config.getConfigFormat().getId()
+        );
 
         appendParameter(builder, "dependencies",
                 String.join(",", config.getDependencies()));

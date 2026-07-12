@@ -1,4 +1,4 @@
-package com.arzoovaswani.springgen.Commands;
+package com.arzoovaswani.springgen.commands;
 
 import picocli.CommandLine.Command;
 

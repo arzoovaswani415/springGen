@@ -1,4 +1,4 @@
-package com.arzoovaswani.springgen.Model;
+package com.arzoovaswani.springgen.model;
 
 /**
  * Supported Spring Boot versions.

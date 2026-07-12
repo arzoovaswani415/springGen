@@ -1,8 +1,9 @@
 package com.arzoovaswani.springgen.config;
 
-import com.arzoovaswani.springgen.Model.BuildTool;
-import com.arzoovaswani.springgen.Model.JavaVersion;
-import com.arzoovaswani.springgen.Model.SpringBootVersion;
+import com.arzoovaswani.springgen.model.BuildTool;
+import com.arzoovaswani.springgen.model.ConfigFormat;
+import com.arzoovaswani.springgen.model.JavaVersion;
+import com.arzoovaswani.springgen.model.SpringBootVersion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,9 @@ public class ProjectConfig {
     private SpringBootVersion springBootVersion;
 
     private BuildTool buildTool;
+
+    private ConfigFormat configFormat;
+
 
     /**
      * Spring Initializr dependency IDs.
@@ -69,6 +73,12 @@ public class ProjectConfig {
     public void setArtifactId(String artifactId) {
         this.artifactId = artifactId;
     }
+    public ConfigFormat getConfigFormat() {
+        return configFormat;
+    }
+    public void setConfigFormat(ConfigFormat configFormat) {
+        this.configFormat = configFormat;
+    }
 
     public String getPackageName() {
         return packageName;
@@ -108,6 +118,47 @@ public class ProjectConfig {
 
     public void setDependencies(List<String> dependencies) {
         this.dependencies = dependencies;
+    }
+    public boolean hasDependency(String dependency) {
+        return dependencies != null &&
+                dependencies.contains(dependency);
+    }
+    public boolean isJpaProject() {
+        return hasDependency("data-jpa");
+    }
+
+    public boolean isJdbcProject() {
+        return hasDependency("jdbc");
+    }
+    public boolean hasMySql() {
+        return hasDependency("mysql");
+    }
+
+    public boolean hasPostgreSql() {
+        return hasDependency("postgresql");
+    }
+
+    public boolean hasMongoDb() {
+        return hasDependency("mongodb");
+    }
+    public boolean hasSecurity() {
+        return hasDependency("security");
+    }
+    public boolean hasLombok() {
+        return hasDependency("lombok");
+    }
+
+    public boolean hasValidation() {
+        return hasDependency("validation");
+    }
+    public boolean hasKafka() {
+        return hasDependency("kafka");
+    }
+    public boolean hasRedis() {
+        return hasDependency("redis");
+    }
+    public boolean hasOpenApi() {
+        return hasDependency("openapi");
     }
 
     @Override

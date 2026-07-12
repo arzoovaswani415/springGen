@@ -2,10 +2,11 @@ package com.arzoovaswani.springgen.wizard;
 
 import com.arzoovaswani.springgen.config.ProjectConfig;
 import com.arzoovaswani.springgen.config.DependencySelector;
-import com.arzoovaswani.springgen.Model.BuildTool;
-import com.arzoovaswani.springgen.Model.JavaVersion;
-import com.arzoovaswani.springgen.Model.SpringBootVersion;
-import com.arzoovaswani.springgen.utils.ValidationUtil;
+import com.arzoovaswani.springgen.model.BuildTool;
+import com.arzoovaswani.springgen.model.ConfigFormat;
+import com.arzoovaswani.springgen.model.JavaVersion;
+import com.arzoovaswani.springgen.model.SpringBootVersion;
+import com.arzoovaswani.springgen.util.ValidationUtil;
 
 
 import java.io.InputStream;
@@ -50,9 +51,12 @@ public class ProjectWizard {
         config.setSpringBootVersion(askSpringBootVersion());
         config.setBuildTool(askBuildTool());
 
+        config.setConfigFormat(askConfigFormat());
+
         config.setDependencies(
                 dependencySelector.selectDependencies()
         );
+
 
         return config;
     }
@@ -61,19 +65,19 @@ public class ProjectWizard {
 
         System.out.println("""
                 
-====================================================
-                🚀 Welcome to SpringGen
-====================================================
-
-Let's create your Spring Boot project.
-
-Just answer a few questions.
-I'll generate the boilerplate for you.
-
-Press ENTER whenever you're ready.
-
-====================================================
-""");
+                ====================================================
+                                🚀 Welcome to SpringGen
+                ====================================================
+                
+                Let's create your Spring Boot project.
+                
+                Just answer a few questions.
+                I'll generate the boilerplate for you.
+                
+                Press ENTER whenever you're ready.
+                
+                ====================================================
+                """);
 
         scanner.nextLine();
     }
@@ -115,9 +119,10 @@ Press ENTER whenever you're ready.
             System.out.println("❌ Invalid Group Id.\n");
         }
     }
+
     /**
      * Generates a valid artifact id from project name.
-     *
+     * <p>
      * Expense Tracker
      * ->
      * expense-tracker
@@ -135,6 +140,7 @@ Press ENTER whenever you're ready.
                 .replaceAll("[^a-z0-9-]", "");
 
     }
+
     private String askArtifactId(String projectName) {
 
         String suggestedArtifact = generateArtifactId(projectName);
@@ -168,6 +174,7 @@ Press ENTER whenever you're ready.
         }
 
     }
+
     /**
      * Expense Tracker
      * ->
@@ -185,6 +192,7 @@ Press ENTER whenever you're ready.
                 .replaceAll("[^a-z0-9]", "");
 
     }
+
     private String askPackageName(String groupId,
                                   String projectName) {
 
@@ -233,14 +241,14 @@ Press ENTER whenever you're ready.
 
             System.out.println("""
                     
-Java Version
-
-1. Java 17
-2. Java 21 (Recommended)
-3. Java 24
-
-Press ENTER for Java 21
-""");
+                    Java Version
+                    
+                    1. Java 17
+                    2. Java 21 (Recommended)
+                    3. Java 24
+                    
+                    Press ENTER for Java 21
+                    """);
 
             System.out.print("Choice : ");
 
@@ -273,14 +281,14 @@ Press ENTER for Java 21
 
             System.out.println("""
                     
-Spring Boot Version
-
-1. 3.5.4 (Latest Stable)
-2. 3.5.3
-3. 3.4.8
-
-Press ENTER for latest stable
-""");
+                    Spring Boot Version
+                    
+                    1. 3.5.4 (Latest Stable)
+                    2. 3.5.3
+                    3. 3.4.8
+                    
+                    Press ENTER for latest stable
+                    """);
 
             System.out.print("Choice : ");
 
@@ -313,13 +321,13 @@ Press ENTER for latest stable
 
             System.out.println("""
                     
-Build Tool
-
-1. Gradle (Recommended)
-2. Maven
-
-Press ENTER for Gradle
-""");
+                    Build Tool
+                    
+                    1. Gradle (Recommended)
+                    2. Maven
+                    
+                    Press ENTER for Gradle
+                    """);
 
             System.out.print("Choice : ");
 
@@ -343,4 +351,40 @@ Press ENTER for Gradle
         }
     }
 
+    private ConfigFormat askConfigFormat() {
+        while (true) {
+
+            System.out.println("""
+                    
+                    Build Tool
+                    
+                    
+                    1. Properties (.properties)
+                    
+                    2. YAML (.yml)
+                    Press ENTER for Properties
+                    
+                    """);
+            System.out.print("Choice : ");
+            String input = scanner.nextLine().trim();
+
+            if (input.isBlank()) {
+                return ConfigFormat.PROPERTIES;
+            }
+
+            switch (input) {
+
+                case "1":
+                    return ConfigFormat.PROPERTIES;
+
+                case "2":
+                    return ConfigFormat.YAML;
+
+                default:
+                    System.out.println("❌ Please choose 1 or 2.\n");
+            }
+
+        }
+
+    }
 }

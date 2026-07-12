@@ -24,7 +24,12 @@ public final class DependencyCatalog {
 
             "data-redis",
 
-            "kafka"
+            "kafka",
+
+            "jdbc",
+            "mongodb"
+
+
 
     );
 

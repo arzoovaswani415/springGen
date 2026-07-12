@@ -1,6 +1,9 @@
 package com.arzoovaswani.springgen.service;
 
 import com.arzoovaswani.springgen.config.ProjectConfig;
+import com.arzoovaswani.springgen.config.ProjectConfigWriter;
+import com.arzoovaswani.springgen.generator.FolderGenerator;
+import com.arzoovaswani.springgen.util.PackageResolver;
 import com.arzoovaswani.springgen.initializr.InitializrClient;
 import com.arzoovaswani.springgen.wizard.ProjectWizard;
 import com.arzoovaswani.springgen.zip.ZipExtractor;
@@ -17,15 +20,19 @@ public class ProjectGenerationService {
 
     private final ZipExtractor zipExtractor;
 
+    private final FolderGenerator folderGenerator;
+
     public ProjectGenerationService(
             ProjectWizard projectWizard,
             InitializrClient initializrClient,
-            ZipExtractor zipExtractor
+            ZipExtractor zipExtractor,
+            FolderGenerator folderGenerator
     ) {
 
         this.projectWizard = projectWizard;
         this.initializrClient = initializrClient;
         this.zipExtractor = zipExtractor;
+        this.folderGenerator=folderGenerator;
 
     }
 
@@ -67,6 +74,27 @@ public class ProjectGenerationService {
              * Step 5
              * Delete temporary ZIP.
              */
+
+            PackageResolver resolver =
+                    new PackageResolver(projectDirectory, config);
+
+            folderGenerator.generate(resolver);
+
+            ApplicationConfigGeneratorService configGenerator =
+                    new ApplicationConfigGeneratorService();
+
+            configGenerator.generate(
+                    projectDirectory,
+                    config
+            );
+
+            ProjectConfigWriter writer =
+                    new ProjectConfigWriter();
+
+            writer.write(
+                    projectDirectory,
+                    config
+            );
             Files.deleteIfExists(zipFile);
 
             System.out.println();

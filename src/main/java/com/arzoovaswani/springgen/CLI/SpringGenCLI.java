@@ -1,7 +1,6 @@
 package com.arzoovaswani.springgen.CLI;
 
-import com.arzoovaswani.springgen.Commands.CreateCommand;
-import com.arzoovaswani.springgen.Commands.VersionCommand;
+import com.arzoovaswani.springgen.commands.*;
 import picocli.CommandLine.Command;
 
 
@@ -12,7 +11,13 @@ import picocli.CommandLine.Command;
         description = "AI Powered Spring Boot Project Generator",
         subcommands = {
                 VersionCommand.class,
-                CreateCommand.class
+                CreateCommand.class,
+                EntityCommand.class,
+                RepositoryCommand.class,
+                DtoCommand.class,
+                ServiceCommand.class,
+                ControllerCommand.class,
+                CrudCommand.class
         }
 )
 public class SpringGenCLI implements Runnable {
