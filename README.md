@@ -1,7 +1,5 @@
 # 🚀 SpringGen
 
-> AI-Powered Spring Boot Project Generator
-
 SpringGen is a command-line tool that automates Spring Boot project setup and boilerplate generation. Instead of manually creating folders, packages, entities, repositories, services, controllers, DTOs, and configuration files, SpringGen scaffolds a clean project structure in seconds.
 
 It builds on top of **Spring Initializr** while adding developer productivity features such as dependency-aware code generation, configurable project templates, and reusable project metadata.
