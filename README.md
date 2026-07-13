@@ -261,13 +261,9 @@ The template engine generates source files using reusable templates and placehol
 Future enhancements include
 
 - Docker support
-- Swagger/OpenAPI generation
 - Spring Security configuration
 - JWT scaffolding
-- GitHub Actions workflow generation
 - Test generation
-- CI/CD templates
-- Additional database support
 
 ---
 
