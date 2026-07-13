@@ -271,22 +271,4 @@ Future enhancements include
 
 ---
 
-## 🤝 Contributing
-
-Contributions, feature requests, and bug reports are welcome.
-
-Feel free to open an issue or submit a pull request.
-
----
-
-## 📄 License
-
-MIT License
-
----
-
-## 👨‍💻 Author
-
-**Arzoo Vaswani**
-
 Built to simplify Spring Boot project development and eliminate repetitive boilerplate.
