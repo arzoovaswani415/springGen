@@ -60,7 +60,7 @@ Examples:
 Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/SpringGen.git
+git clone https://github.com/arzoovaswani415/springGen.git
 ```
 
 Build the project
